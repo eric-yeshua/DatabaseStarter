@@ -7,14 +7,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function ImageDisplay() {
+export default function ImageDisplay({ images }: { images: string[] }) {
   return (
     <div className="relative w-full">
       <Carousel className="h-fit">
-        <CarouselPrevious className="absolute z-[100] top-1/2 left-0 transform -translate-y-1/2">
+        <CarouselPrevious className="top-1/2 left-0 z-[100] absolute -translate-y-1/2 transform">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-white"
+            className="w-8 h-8 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -28,32 +28,16 @@ export default function ImageDisplay() {
           </svg>
         </CarouselPrevious>
         <CarouselContent>
-          <CarouselItem>
-            <img
-              src="https://dummyimage.com/600x520/000/fff"
-              alt="product"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
-          <CarouselItem>
-            <img
-              src="https://dummyimage.com/600x520/000/fff"
-              alt="product"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
-          <CarouselItem>
-            <img
-              src="https://dummyimage.com/600x520/000/fff"
-              alt="product"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
+          {images.map((url, index) => (
+            <CarouselItem key={index}>
+              <img src={url} alt="product" className="size-full object-cover" />
+            </CarouselItem>
+          ))}
         </CarouselContent>
-        <CarouselNext className="absolute top-1/2 right-0 transform -translate-y-1/2">
+        <CarouselNext className="top-1/2 right-0 absolute -translate-y-1/2 transform">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-white"
+            className="w-8 h-8 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
